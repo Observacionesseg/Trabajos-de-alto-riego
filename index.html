@@ -192,8 +192,8 @@
       </div>
     </div>
 
-<div class="seccion-card">
-      <h3>2. Descripción de la Actividad</h3>
+    <div class="seccion-card">
+      <h3>2. Descripción del Trabajo y/o Actividad</h3>
       <div class="row g-3">
         <div class="col-md-3"><label class="form-label fw-semibold small">Fecha</label><input type="date" class="form-control" name="fecha"></div>
         <div class="col-md-3"><label class="form-label fw-semibold small">Hora Inicio</label><input type="time" class="form-control" name="h_ini" id="h_ini" onchange="calcularTiempo()"></div>
@@ -219,7 +219,21 @@
         </div>
         <div class="col-md-6">
           <label class="form-label fw-semibold small">Departamento/Área donde se realiza el trabajo</label>
-          <input type="text" class="form-control" name="depto_trabajo" placeholder="Ej: Mantenimiento, Producción...">
+          <select class="form-select" name="depto_trabajo" id="depto_trabajo">
+             <option value="COSECHA Y CAMPO">COSECHA Y CAMPO</option>
+ <option value="LAVADORAS">LAVADORAS</option>
+ <option value="MOLINOS Y ENVASADOS">MOLINOS Y ENVASADOS</option>
+ <option value="MANT INDUSTRIAL">MANT INDUSTRIAL</option>
+ <option value="MANT ESP COLORADAS">MANT ESP COLORADAS</option>
+ <option value="EMBARQUES">EMBARQUES</option>
+ <option value="CONTROL DE CALIDAD">CONTROL DE CALIDAD</option>
+ <option value="OFICINAS">OFICINAS</option>
+ <option value="ALMACEN">ALMACEN</option>
+ <option value="PRESTACIONES">PRESTACIONES</option>
+ <option value="BIOLOGIA Y AQUACULTURA">BIOLOGIA Y AQUACULTURA</option>
+ <option value="MANTTO. Y OPERACION MUELLE">MANTTO. Y OPERACION MUELLE</option>
+ <option value="REGISTRO">REGISTRO</option>
+          </select>
         </div>
 
         <div class="col-12">
@@ -235,7 +249,7 @@
     </div>
 
     <div class="seccion-card">
-      <h3>3. Clasificación del Trabajo</h3>
+      <h3>3. Tipo y característica del trabajo</h3>
       <div class="grid-checklist">
         <label class="check-item"><input type="checkbox" name="tipo_t" value="TCA" onchange="actualizarInterfaz()"> en Caliente (TCA)</label>
         <label class="check-item"><input type="checkbox" name="tipo_t" value="TEL" onchange="actualizarInterfaz()"> Eléctrico (TEL)</label>
@@ -249,7 +263,7 @@
     </div>
 
     <div class="seccion-card">
-      <h3>4. Ambiente de Trabajo</h3>
+      <h3>4. Características del ambiente de trabajo que se presentan al momento de realizar la actividad</h3>
       <div class="grid-checklist">
         <label class="check-item"><input type="checkbox" name="ambiente" value="Ambiente contaminado"> Ambiente contaminado</label>
         <label class="check-item"><input type="checkbox" name="ambiente" value="Ruido excesivo"> Ruido excesivo</label>
@@ -261,11 +275,10 @@
         <label class="check-item"><input type="checkbox" name="ambiente" value="Vientos fuertes"> Vientos fuertes</label>
         <label class="check-item"><input type="checkbox" name="ambiente" value="Lluvias"> Lluvias</label>
       </div>
- <div class="mt-3">
+      <div class="mt-3">
         <label class="form-label fw-semibold small">Otros:</label>
         <input type="text" class="form-control" name="otros_ambiente" placeholder="Especifique otras características del ambiente de trabajo...">
       </div>
-
     </div>
 
     <div class="seccion-card">
@@ -285,21 +298,20 @@
         <label class="check-item"><input type="checkbox" name="riesgos" value="Derrumbe"> Derrumbe</label>
         <label class="check-item"><input type="checkbox" name="riesgos" value="Descarga eléctrica"> Descarga eléctrica</label>
       </div>
- <div class="mt-3">
+      <div class="mt-3">
         <label class="form-label fw-semibold small">Otros:</label>
         <input type="text" class="form-control" name="otros_riesgos" placeholder="Especifique otros riesgos...">
       </div>
-
     </div>
 
     <div id="secEPP" class="seccion-card hidden">
-      <h3>6. EPP Requerido</h3>
+      <h3>EPP mínimos obligatorios para la protección</h3>
       <p class="text-danger small mb-3 fw-medium">* Validar con Seguridad Industrial según la actividad.</p>
       <div id="contEPP" class="grid-checklist"></div>
     </div>
 
     <div class="seccion-card">
-      <h3>7. Herramientas / Equipos</h3>
+      <h3>7. Herramientas / Equipos utilizados</h3>
       <div class="grid-checklist">
         <label class="check-item"><input type="checkbox" name="herramientas_check" value="Andamios tipo torre"> Andamios tipo torre o estructura</label>
         <label class="check-item"><input type="checkbox" name="herramientas_check" value="Andamios suspendidos"> Andamios suspendidos</label>
@@ -309,7 +321,7 @@
         <label class="check-item"><input type="checkbox" name="herramientas_check" value="Amoladora Esmeriladora"> Amoladora Esmeriladora</label>
         <label class="check-item"><input type="checkbox" name="herramientas_check" value="Sierra circular"> Sierra circular</label>
         <label class="check-item"><input type="checkbox" name="herramientas_check" value="Máq. Soldar"> Máq. De soldar eléctrica</label>
-        <label class="check-item"><input type="checkbox" name="herramientas_check" value="Máquina Oxicorte"> Máquina Oxicorte</label>
+        <label class="check-item"><input type="checkbox" name="Máquina Oxicorte"> Máquina Oxicorte</label>
         <label class="check-item"><input type="checkbox" name="herramientas_check" value="Maquinaria Pesada"> Maquinaria Pesada</label>
         <label class="check-item"><input type="checkbox" name="herramientas_check" value="Grúa Móvil"> Grúa Móvil</label>
         <label class="check-item"><input type="checkbox" name="herramientas_check" value="Brazo articulado"> Brazo articulado</label>
@@ -323,12 +335,12 @@
     </div>
 
     <div id="seccion7" class="seccion-card hidden">
-      <h3>8. Previsiones Mínimas Obligatorias</h3>
+      <h3>8. Previsiones mínimas obligatorias para inicio y ejecución del trabajo</h3>
       <div id="contenedorChecklists"></div>
     </div>
 
     <div class="seccion-card">
-      <h3>9. Personal Autorizado</h3>
+      <h3>9. Personal autorizado para la realización del trabajo</h3>
       <div class="row g-3 mb-4">
         <div class="col-sm-9">
           <select class="form-select" id="selPersonal">
@@ -365,6 +377,14 @@
   const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzLNNtPWuiMVSK9tb8e4Q8n_0LxC31maP2CVPLNaRON_0CNvTBaNo6cHhsGgXLbtM0p/exec';
 
   window.onload = function() {
+    // Inicializar TomSelect para el nuevo campo de Departamento
+    new TomSelect("#depto_trabajo", {
+      create: false,
+      sortField: { field: "text", order: "asc" },
+      placeholder: "Busca un área...",
+      allowEmptyOption: true
+    });
+
     fetch(SCRIPT_URL + "?action=getListasFormulario")
       .then(response => response.json())
       .then(data => {
@@ -398,12 +418,10 @@
       sel.appendChild(opt);
     });
 
-    // Destruir instancia previa si existe para evitar duplicados
     if (sel.tomselect) {
       sel.tomselect.destroy();
     }
 
-    // Inicializar TomSelect
     new TomSelect("#" + id, {
       create: false,
       sortField: { field: "text", order: "asc" },
@@ -428,14 +446,14 @@
     }
   }
 
-  const eppMaster = {
-    TCA: ["Casco de seguridad", "Tapones auditivos", "Guantes de carnaza", "Pantalla facial*", "Mascarilla para soldador*", "Careta de soldador*", "Peto de carnaza", "Manga de carnaza*", "Polainas de carnaza*", "Overol*", "Filtros Part. Inorgan/org.*", "Lentes oxicorte*", "Monjas*", "Botas dieléctricas"],
+const eppMaster = {
+    TCA: ["Casco de seguridad", "Tapones auditivos", "Guantes de carnaza", "Pantalla facial(validar)", "Mascarilla para soldador(validar)", "Careta de soldador(validar)", "Peto de carnaza", "Manga de carnaza(validar)", "Polainas de carnaza(validar)", "Overol(validar)", "Filtros Part. Inorgan/org.(validar)", "Lentes oxicorte(validar)", "Monjas(validar)", "Botas dieléctricas"],
     TIZ: ["Casco de seguridad", "Barbiquejo", "Guantes de carnaza", "Chaleco/Reflejantes", "Botas de seguridad con concha", "Guantes de seguridad de maniobrista"],
     TEL: ["Guantes dieléctricos", "Casco dieléctrico", "Botas dieléctricas"],
-    TEX: ["Casco de seguridad", "Tapones auditivos*", "Conchas de seguridad*", "Guantes de carnaza*", "Chaleco/Reflejantes", "Guantes para perforistas*", "Botas de seguridad con concha", "Filtros Part. Inorgan/Org.", "Lentes de protección partículas"],
-    TEC: ["Chaleco/Reflejantes", "Botas de seguridad con concha", "Filtros Part. Inorgan/Org.*", "Arnés*", "Línea de vida*", "Mascarilla respirador 1/2 cara", "Guantes de seguridad de maniobrista"],
+    TEX: ["Casco de seguridad", "Tapones auditivos(validar)", "Conchas de seguridad(validar)", "Guantes de carnaza(validar)", "Chaleco/Reflejantes", "Guantes para perforistas(validar)", "Botas de seguridad con concha", "Filtros Part. Inorgan/Org.", "Lentes de protección partículas"],
+    TEC: ["Chaleco/Reflejantes", "Botas de seguridad con concha", "Filtros Part. Inorgan/Org.(validar)", "Arnés(validar)", "Línea de vida(validar)", "Mascarilla respirador 1/2 cara", "Guantes de seguridad de maniobrista"],
     TBU: ["Traje de buceo", "Tanque de aire", "Aletas", "Botas de buceo"],
-    TAL: ["Casco de seguridad", "Barbiquejo", "Chaleco/Reflejantes*", "Botas de seguridad con concha", "Arnés", "Línea de vida"]
+    TAL: ["Casco de seguridad", "Barbiquejo", "Chaleco/Reflejantes(validar)", "Botas de seguridad con concha", "Arnés", "Línea de vida"]
   };
 
   const preguntasMaster = {
@@ -513,8 +531,6 @@
       <td class="text-center"><input class="form-check-input dc3-per" type="checkbox"></td>
       <td class="text-center"><input class="form-check-input imss-per" type="checkbox"></td>
       <td class="text-center"><button type="button" class="btn btn-sm btn-outline-danger" onclick="this.closest('tr').remove()">✕</button></td></tr>`;
-    
-    // Limpiar buscador de personal tras agregar
     sel.tomselect.clear();
   }
 
@@ -522,8 +538,8 @@
     const form = document.getElementById('formPeligroso');
     const btn = document.getElementById('btnSubmit');
 
-    if(!form.fecha.value || !form.resp_elab.value) {
-      alert("Por favor completa los campos obligatorios (Fecha y Responsables)");
+    if(!form.fecha.value || !form.resp_elab.value || !form.depto_trabajo.value) {
+      alert("Por favor completa los campos obligatorios (Fecha, Responsables y Departamento)");
       return;
     }
 
@@ -566,10 +582,10 @@
       alert("¡Solicitud enviada! Si el PDF no se abre automáticamente, verifica tu Google Drive.");
       form.reset();
       
-      // Limpiar visualmente los buscadores tras reset
       document.getElementById('resp_elab').tomselect.clear();
       document.getElementById('resp_ejec').tomselect.clear();
       document.getElementById('selPersonal').tomselect.clear();
+      document.getElementById('depto_trabajo').tomselect.clear();
       
       document.getElementById("listaPersonal").innerHTML = "";
       document.getElementById("t_est").value = "";
@@ -587,3 +603,4 @@
 </script>
 </body>
 </html>
+
