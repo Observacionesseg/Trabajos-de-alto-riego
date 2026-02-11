@@ -203,11 +203,13 @@
         <div class="col-md-6">
           <label class="form-label fw-semibold small">Responsable Elaboración</label>
           <select class="form-select" name="resp_elab" id="resp_elab">
+            <option value="">Cargando nombres...</option>
           </select>
         </div>
         <div class="col-md-6">
           <label class="form-label fw-semibold small">Responsable Ejecución</label>
           <select class="form-select" name="resp_ejec" id="resp_ejec">
+            <option value="">Cargando nombres...</option>
           </select>
         </div>
 
@@ -218,19 +220,19 @@
         <div class="col-md-6">
           <label class="form-label fw-semibold small">Departamento/Área donde se realiza el trabajo</label>
           <select class="form-select" name="depto_trabajo" id="depto_trabajo">
-             <option value="COSECHA Y CAMPO">COSECHA Y CAMPO</option>
- <option value="LAVADORAS">LAVADORAS</option>
- <option value="MOLINOS Y ENVASADOS">MOLINOS Y ENVASADOS</option>
- <option value="MANT INDUSTRIAL">MANT INDUSTRIAL</option>
- <option value="MANT ESP COLORADAS">MANT ESP COLORADAS</option>
- <option value="EMBARQUES">EMBARQUES</option>
- <option value="CONTROL DE CALIDAD">CONTROL DE CALIDAD</option>
- <option value="OFICINAS">OFICINAS</option>
- <option value="ALMACEN">ALMACEN</option>
- <option value="PRESTACIONES">PRESTACIONES</option>
- <option value="BIOLOGIA Y AQUACULTURA">BIOLOGIA Y AQUACULTURA</option>
- <option value="MANTTO. Y OPERACION MUELLE">MANTTO. Y OPERACION MUELLE</option>
- <option value="REGISTRO">REGISTRO</option>
+             <option value="COSECHA Y CAMPO">COSECHA Y CAMPO</option>
+ <option value="LAVADORAS">LAVADORAS</option>
+ <option value="MOLINOS Y ENVASADOS">MOLINOS Y ENVASADOS</option>
+ <option value="MANT INDUSTRIAL">MANT INDUSTRIAL</option>
+ <option value="MANT ESP COLORADAS">MANT ESP COLORADAS</option>
+ <option value="EMBARQUES">EMBARQUES</option>
+ <option value="CONTROL DE CALIDAD">CONTROL DE CALIDAD</option>
+ <option value="OFICINAS">OFICINAS</option>
+ <option value="ALMACEN">ALMACEN</option>
+ <option value="PRESTACIONES">PRESTACIONES</option>
+ <option value="BIOLOGIA Y AQUACULTURA">BIOLOGIA Y AQUACULTURA</option>
+ <option value="MANTTO. Y OPERACION MUELLE">MANTTO. Y OPERACION MUELLE</option>
+ <option value="REGISTRO">REGISTRO</option>
           </select>
         </div>
 
@@ -375,7 +377,6 @@
   const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzLNNtPWuiMVSK9tb8e4Q8n_0LxC31maP2CVPLNaRON_0CNvTBaNo6cHhsGgXLbtM0p/exec';
 
   window.onload = function() {
-    // Inicializar TomSelect para el nuevo campo de Departamento
     new TomSelect("#depto_trabajo", {
       create: false,
       sortField: { field: "text", order: "asc" },
@@ -396,19 +397,12 @@
       })
       .catch(error => {
         console.error('Error al cargar nombres:', error);
-        google.script.run.withSuccessHandler(n => llenarUnSelect('resp_elab', n)).obtenerListaElaboracion();
-        google.script.run.withSuccessHandler(n => {
-          llenarUnSelect('resp_ejec', n);
-          llenarUnSelect('selPersonal', n);
-        }).obtenerListaGeneral();
       });
   };
 
   function llenarUnSelect(id, nombres) {
     const sel = document.getElementById(id);
     if(!sel) return;
-    
-    sel.innerHTML = '<option value="">Escribe para buscar...</option>';
     nombres.forEach(n => {
       let opt = document.createElement('option');
       opt.value = n;
@@ -445,13 +439,13 @@
   }
 
 const eppMaster = {
-    TCA: ["Casco de seguridad", "Tapones auditivos", "Guantes de carnaza", "Pantalla facial*(validar)", "Mascarilla para soldador*(validar)", "Careta de soldador*(validar)", "Peto de carnaza", "Manga de carnaza*(validar)", "Polainas de carnaza*(validar)", "Overol*(validar)", "Filtros Part. Inorgan/org.*(validar)", "Lentes oxicorte*(validar)", "Monjas*(validar)", "Botas dieléctricas"],
+    TCA: ["Casco de seguridad", "Tapones auditivos", "Guantes de carnaza", "Pantalla facial(validar)", "Mascarilla para soldador(validar)", "Careta de soldador(validar)", "Peto de carnaza", "Manga de carnaza(validar)", "Polainas de carnaza(validar)", "Overol(validar)", "Filtros Part. Inorgan/org.(validar)", "Lentes oxicorte(validar)", "Monjas(validar)", "Botas dieléctricas"],
     TIZ: ["Casco de seguridad", "Barbiquejo", "Guantes de carnaza", "Chaleco/Reflejantes", "Botas de seguridad con concha", "Guantes de seguridad de maniobrista"],
     TEL: ["Guantes dieléctricos", "Casco dieléctrico", "Botas dieléctricas"],
-    TEX: ["Casco de seguridad", "Tapones auditivos*(validar)", "Conchas de seguridad*(validar)", "Guantes de carnaza*(validar)", "Chaleco/Reflejantes", "Guantes para perforistas*(validar)", "Botas de seguridad con concha", "Filtros Part. Inorgan/Org.", "Lentes de protección partículas"],
-    TEC: ["Chaleco/Reflejantes", "Botas de seguridad con concha", "Filtros Part. Inorgan/Org.*(validar)", "Arnés*(validar)", "Línea de vida*(validar)", "Mascarilla respirador 1/2 cara", "Guantes de seguridad de maniobrista"],
+    TEX: ["Casco de seguridad", "Tapones auditivos(validar)", "Conchas de seguridad(validar)", "Guantes de carnaza(validar)", "Chaleco/Reflejantes", "Guantes para perforistas(validar)", "Botas de seguridad con concha", "Filtros Part. Inorgan/Org.", "Lentes de protección partículas"],
+    TEC: ["Chaleco/Reflejantes", "Botas de seguridad con concha", "Filtros Part. Inorgan/Org.(validar)", "Arnés(validar)", "Línea de vida(validar)", "Mascarilla respirador 1/2 cara", "Guantes de seguridad de maniobrista"],
     TBU: ["Traje de buceo", "Tanque de aire", "Aletas", "Botas de buceo"],
-    TAL: ["Casco de seguridad", "Barbiquejo", "Chaleco/Reflejantes*(validar)", "Botas de seguridad con concha", "Arnés", "Línea de vida"]
+    TAL: ["Casco de seguridad", "Barbiquejo", "Chaleco/Reflejantes(validar)", "Botas de seguridad con concha", "Arnés", "Línea de vida"]
   };
 
   const preguntasMaster = {
@@ -572,22 +566,36 @@ const eppMaster = {
 
     fetch(SCRIPT_URL, { 
       method: 'POST', 
-      mode: 'no-cors', 
+      mode: 'cors', // Cambiado a 'cors' para poder leer la respuesta JSON
       body: params.toString(),
       headers: { "Content-Type": "application/x-www-form-urlencoded" }
     })
-    .then(() => {
-      alert("¡Solicitud enviada! Si el PDF no se abre automáticamente, verifica tu Google Drive.");
-      form.reset();
-      
-      document.getElementById('resp_elab').tomselect.clear();
-      document.getElementById('resp_ejec').tomselect.clear();
-      document.getElementById('selPersonal').tomselect.clear();
-      document.getElementById('depto_trabajo').tomselect.clear();
-      
-      document.getElementById("listaPersonal").innerHTML = "";
-      document.getElementById("t_est").value = "";
-      actualizarInterfaz();
+    .then(response => response.json()) // Procesamos la respuesta JSON del servidor
+    .then(res => {
+      if (res.status === "success") {
+        // --- LÓGICA DE DESCARGA AUTOMÁTICA ---
+        const link = document.createElement('a');
+        link.href = res.url;
+        link.target = "_blank"; // Asegura compatibilidad
+        link.download = "Permiso_PTAR.pdf";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        // -------------------------------------
+
+        alert("¡Registro exitoso! El PDF se ha generado y descargado.");
+        
+        form.reset();
+        document.getElementById('resp_elab').tomselect.clear();
+        document.getElementById('resp_ejec').tomselect.clear();
+        document.getElementById('selPersonal').tomselect.clear();
+        document.getElementById('depto_trabajo').tomselect.clear();
+        document.getElementById("listaPersonal").innerHTML = "";
+        document.getElementById("t_est").value = "";
+        actualizarInterfaz();
+      } else {
+        alert("Error: " + res.message);
+      }
     })
     .catch(error => {
       alert("Error al conectar con el servidor.");
@@ -601,6 +609,4 @@ const eppMaster = {
 </script>
 </body>
 </html>
-
-
 
