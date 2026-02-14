@@ -1,613 +1,232 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-  <base target="_top">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-  
-  <link href="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/css/tom-select.bootstrap5.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/js/tom-select.complete.min.js"></script>
-
-  <style>
-    :root { 
-      --azul-orcela: #002349; 
-      --azul-accent: #0056b3; 
-      --gris-fondo: #f4f7f9;
-      --gris-borde: #dee2e6;
-    }
-    
-    body { 
-      background-color: var(--gris-fondo); 
-      font-family: 'Inter', sans-serif; 
-      padding: 40px 0; 
-      color: #333;
-    }
-
-    .container { max-width: 900px; }
-
-    /* Tarjetas de Sección */
-    .seccion-card { 
-      background: white; 
-      padding: 30px; 
-      border-radius: 16px; 
-      box-shadow: 0 10px 30px rgba(0,0,0,0.05); 
-      margin-bottom: 30px; 
-      border: 1px solid rgba(0,0,0,0.05);
-      border-top: 5px solid var(--azul-orcela); 
-    }
-
-    /* Ajustes específicos para Tom Select y que combine con tu diseño */
-    .ts-control {
-      border-radius: 8px !important;
-      padding: 10px 15px !important;
-      border: 1px solid var(--gris-borde) !important;
-      font-size: 0.9rem !important;
-    }
-    .ts-wrapper.single .ts-control { background-image: none !important; }
-    .ts-dropdown { border-radius: 8px !important; }
-
-    h2 { letter-spacing: -1px; }
-    
-    h3 { 
-      color: var(--azul-orcela); 
-      font-size: 1rem; 
-      font-weight: 700; 
-      text-transform: uppercase; 
-      margin-bottom: 25px; 
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    h3::after {
-      content: "";
-      flex: 1;
-      height: 1px;
-      background: #eee;
-    }
-
-    /* Grid de Checklists */
-    .grid-checklist { 
-      display: grid; 
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); 
-      gap: 12px; 
-    }
-
-    .check-item { 
-      background: #ffffff; 
-      padding: 12px 15px; 
-      border-radius: 10px; 
-      border: 1px solid var(--gris-borde); 
-      font-size: 0.85rem; 
-      display: flex; 
-      align-items: center; 
-      gap: 12px; 
-      transition: all 0.2s ease;
-      cursor: pointer;
-    }
-
-    .check-item:hover {
-      border-color: var(--azul-orcela);
-      background-color: #f8f9ff;
-    }
-
-    .check-item input[type="checkbox"] {
-      width: 18px;
-      height: 18px;
-      cursor: pointer;
-    }
-
-    /* Filas de Preguntas (Punto 7) */
-    .pregunta-row { 
-      display: flex; 
-      justify-content: space-between; 
-      align-items: center; 
-      padding: 12px 15px; 
-      border-radius: 8px;
-      margin-bottom: 5px;
-      transition: background 0.2s;
-    }
-
-    .pregunta-row:nth-child(odd) { background: #fafafa; }
-    .pregunta-row:hover { background: #f1f4f8; }
-
-    .pregunta-row span { flex: 1; padding-right: 20px; font-size: 0.9rem; }
-
-    /* Sub-secciones */
-    .sub-seccion { 
-      margin-left: 15px; 
-      border-left: 3px solid #e9ecef; 
-      padding-left: 20px; 
-      margin-top: 15px; 
-      margin-bottom: 20px;
-    }
-
-    .hidden { display: none; }
-
-    /* Inputs y Tablas */
-    .form-control, .form-select {
-      border-radius: 8px;
-      padding: 10px 15px;
-      border: 1px solid var(--gris-borde);
-    }
-
-    .form-control:focus {
-      border-color: var(--azul-orcela);
-      box-shadow: 0 0 0 0.25rem rgba(0, 35, 73, 0.1);
-    }
-
-    .form-control-readonly {
-      background-color: #f8f9fa !important;
-      font-weight: 700;
-      color: var(--azul-orcela);
-      border-style: dashed;
-    }
-
-    .table { border-radius: 10px; overflow: hidden; font-size: 0.9rem; }
-    .table thead { background-color: var(--azul-orcela); color: white; border: none; }
-
-    /* Botón */
-    .btn-submit { 
-      background: var(--azul-orcela); 
-      color: white; 
-      padding: 20px; 
-      font-weight: 700; 
-      width: 100%; 
-      border-radius: 12px; 
-      border: none; 
-      font-size: 1.1rem; 
-      margin-bottom: 80px; 
-      transition: transform 0.2s, background 0.2s;
-      box-shadow: 0 10px 20px rgba(0,35,73,0.2);
-    }
-
-    .btn-submit:hover { 
-      background: var(--azul-accent); 
-      transform: translateY(-2px);
-    }
-
-    .btn-submit:active { transform: translateY(0); }
-    .btn-submit:disabled { background: #666; cursor: not-allowed; }
-
-    .text-muted-small { font-size: 0.8rem; color: #6c757d; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Capitanes - ISYSA</title>
+    <style>
+        :root { --gold: #c5a021; --navy: #002344; --light: #f1f5f9; --success: #22c55e; --error: #ef4444; --warning: #f59e0b; }
+        body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; padding: 20px; }
+        .container { width: 100%; max-width: 600px; background: white; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); margin: auto; border-top: 8px solid var(--gold); overflow: hidden; }
+        .header { background: var(--navy); color: white; padding: 20px; text-align: center; }
+        .body-content { padding: 25px; }
+        .group { margin-bottom: 18px; }
+        label { display: block; font-weight: 700; margin-bottom: 6px; color: var(--navy); font-size: 0.85rem; text-transform: uppercase; }
+        select, textarea, input { width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 6px; box-sizing: border-box; font-size: 1rem; }
+        .info-card { background: var(--light); border: 1px solid #e2e8f0; padding: 20px; border-radius: 8px; margin-top: 20px; display: none; }
+        .section-title { border-bottom: 2px solid var(--gold); padding-bottom: 5px; margin-bottom: 15px; color: var(--navy); font-weight: bold; font-size: 1rem; }
+        .data-row { margin-bottom: 10px; font-size: 0.9rem; line-height: 1.4; border-bottom: 1px solid #eee; padding-bottom: 5px; }
+        .data-row b { color: var(--navy); display: block; font-size: 0.75rem; text-transform: uppercase; margin-bottom: 2px; }
+        .img-evidencia { width: 100%; border-radius: 8px; margin-top: 10px; border: 2px solid #ddd; display: block; background: #eee; min-height: 150px; object-fit: contain; }
+        button { width: 100%; background: var(--navy); color: white; border: none; padding: 14px; font-weight: bold; border-radius: 6px; cursor: pointer; margin-top: 15px; transition: 0.3s; }
+        button:hover { background: var(--gold); }
+        button:disabled { background: #94a3b8; cursor: not-allowed; }
+        .loader { text-align: center; color: var(--gold); font-weight: bold; display: none; padding: 10px; }
+        .badge-tipo { padding: 4px 8px; border-radius: 4px; color: white; font-weight: bold; font-size: 0.8rem; display: inline-block; margin-bottom: 10px; }
+        
+        /* Estilo para la nueva sección de alerta imperativa */
+        .alerta-prioridad { background: #fff4e5; border: 1px dashed var(--warning); padding: 15px; border-radius: 8px; margin-bottom: 15px; }
+    </style>
 </head>
 <body>
 
-<div class="container">
-  <div class="text-center mb-5">
-    <h2 style="color: var(--azul-orcela); font-weight: 800; text-transform: uppercase;">Permiso de Trabajo Peligroso</h2>
-    <p class="text-muted">Industria Salinera de Yucatán SA de CV - Seguridad y Salud</p>
-  </div>
-
-  <form id="formPeligroso">
-    <div class="seccion-card">
-      <h3>1. Tipo de Permiso</h3>
-      <div class="d-flex gap-5 mb-3">
-        <div class="form-check"><input class="form-check-input" type="radio" name="p_tipo" value="Diario" checked> <label class="fw-medium">Diario</label></div>
-        <div class="form-check"><input class="form-check-input" type="radio" name="p_tipo" value="Por Trabajo"> <label class="fw-medium">Por Trabajo</label></div>
-      </div>
-      <div class="p-2 px-3 bg-light rounded d-inline-block">
-        <span class="text-muted-small">Autorización No:</span> <span id="folio" class="fw-bold text-primary ms-2">AUTOMÁTICO</span>
-      </div>
-    </div>
-
-    <div class="seccion-card">
-      <h3>2. Descripción del Trabajo y/o Actividad</h3>
-      <div class="row g-3">
-        <div class="col-md-3"><label class="form-label fw-semibold small">Fecha</label><input type="date" class="form-control" name="fecha"></div>
-        <div class="col-md-3"><label class="form-label fw-semibold small">Hora Inicio</label><input type="time" class="form-control" name="h_ini" id="h_ini" onchange="calcularTiempo()"></div>
-        <div class="col-md-3"><label class="form-label fw-semibold small">Hora Final</label><input type="time" class="form-control" name="h_fin" id="h_fin" onchange="calcularTiempo()"></div>
-        <div class="col-md-3"><label class="form-label fw-semibold small">Tiempo Estimado</label><input type="text" class="form-control form-control-readonly" name="t_est" id="t_est" readonly placeholder="Calculado..."></div>
-        
-        <div class="col-md-6">
-          <label class="form-label fw-semibold small">Responsable Elaboración</label>
-          <select class="form-select" name="resp_elab" id="resp_elab">
-            <option value="">Cargando nombres...</option>
-          </select>
+<div id="loginSection" class="container">
+    <div class="header"><h1>Acceso Capitanes</h1></div>
+    <div class="body-content">
+        <div class="group">
+            <label>Seleccione su nombre</label>
+            <select id="loginNombre"><option value="">Cargando...</option></select>
         </div>
-        <div class="col-md-6">
-          <label class="form-label fw-semibold small">Responsable Ejecución</label>
-          <select class="form-select" name="resp_ejec" id="resp_ejec">
-            <option value="">Cargando nombres...</option>
-          </select>
+        <div class="group">
+            <label>Código de Acceso</label>
+            <input type="password" id="loginPass" placeholder="Contraseña">
+        </div>
+        <button onclick="intentarLogin()" id="btnLogin">INGRESAR</button>
+    </div>
+</div>
+
+
+<div id="mainPanel" class="container" style="display: none;">
+    <div class="header"><h1 id="txtBienvenida">Panel</h1></div>
+    <div class="body-content">
+        <div class="group">
+            <label>1. Observador Asignado</label>
+            <select id="selectObservador" onchange="cargarReportes()">
+                <option value="">-- Seleccione --</option>
+            </select>
+        </div>
+        <div id="loaderRep" class="loader">Buscando reportes...</div>
+        <div class="group">
+            <label>2. Observaciones Pendientes</label>
+            <select id="selectReporte" onchange="mostrarDetalle()" disabled>
+                <option value="">Seleccione un observador primero</option>
+            </select>
         </div>
 
-        <div class="col-md-6">
-          <label class="form-label fw-semibold small">Razón social del contratista (si aplica)</label>
-          <input type="text" class="form-control" name="razon_social" placeholder="Nombre de la empresa externa">
+        <div id="visorDetalle" class="info-card">
+            <div id="badgeCont"></div>
+            <div class="section-title">Detalles del Reporte</div>
+            <div id="datosVisor"></div>
+            <div id="valFoto"></div>
+            <hr style="margin: 20px 0; border: 0; border-top: 2px solid var(--gold);">
+            <form id="formDictamen">
+                <input type="hidden" id="idFila" name="idFila"> 
+                
+
+                  <div id="areaCalificacion" class="alerta-prioridad" style="display: none;">
+                    <label style="color: var(--warning);">Calificación de Condición</label>
+                    <select name="calificacionPrioridad" id="calificacionPrioridad">
+                        <option value="INMEDIATO">INMEDIATO</option>
+                        <option value="PROGRAMADO">PROGRAMADO</option>
+                        <option value="PROXIMO PARO">PRÓXIMO PARO</option>
+                    </select>
+                </div>
+
+                <label>Veredicto Final</label>
+                <select name="dictamen" required>
+                    <option value="Validado">Validado (Aprobar)</option>
+                    <option value="Corregir">Corregir (Enviar a revisión)</option>
+                    <option value="Rechazado">Rechazado</option>
+                </select>
+                <label style="margin-top:15px;">Comentarios para el Observador</label>
+                <textarea name="comentarios" rows="3" placeholder="Indique las razones del veredicto..." required></textarea>
+                <button type="submit" id="btnEnviar">GUARDAR Y NOTIFICAR POR CORREO</button>
+            </form>
         </div>
-        <div class="col-md-6">
-          <label class="form-label fw-semibold small">Departamento/Área donde se realizará el trabajo</label>
-          <select class="form-select" name="depto_trabajo" id="depto_trabajo">
-             <option value="COSECHA Y CAMPO">COSECHA Y CAMPO</option>
- <option value="LAVADORAS">LAVADORAS</option>
- <option value="MOLINOS Y ENVASADOS">MOLINOS Y ENVASADOS</option>
- <option value="MANT INDUSTRIAL">MANT INDUSTRIAL</option>
- <option value="MANT ESP COLORADAS">MANT ESP COLORADAS</option>
- <option value="EMBARQUES">EMBARQUES</option>
- <option value="CONTROL DE CALIDAD">CONTROL DE CALIDAD</option>
- <option value="OFICINAS">OFICINAS</option>
- <option value="ALMACEN">ALMACEN</option>
- <option value="PRESTACIONES">PRESTACIONES</option>
- <option value="BIOLOGIA Y AQUACULTURA">BIOLOGIA Y AQUACULTURA</option>
- <option value="MANTTO. Y OPERACION MUELLE">MANTTO. Y OPERACION MUELLE</option>
- <option value="REGISTRO">REGISTRO</option>
-          </select>
-        </div>
-
-        <div class="col-12">
-          <label class="form-label fw-semibold small">Ubicación del sitio donde se realizará el trabajo</label>
-          <input type="text" class="form-control" name="ubicacion_sitio" placeholder="Ej: Azotea edificio B, Almacén de químicos...">
-        </div>
-
-        <div class="col-12">
-          <label class="form-label fw-semibold small">Descripción Detallada del Trabajo</label>
-          <textarea class="form-control" name="desc_t" rows="3" placeholder="Describa las tareas a realizar..."></textarea>
-        </div>
-      </div>
     </div>
-
-    <div class="seccion-card">
-      <h3>3. Tipo y característica del trabajo</h3>
-      <div class="grid-checklist">
-        <label class="check-item"><input type="checkbox" name="tipo_t" value="TCA" onchange="actualizarInterfaz()"> en Caliente (TCA)</label>
-        <label class="check-item"><input type="checkbox" name="tipo_t" value="TEL" onchange="actualizarInterfaz()"> Eléctrico (TEL)</label>
-        <label class="check-item"><input type="checkbox" name="tipo_t" value="TEX" onchange="actualizarInterfaz()"> Excavación (TEX)</label>
-        <label class="check-item"><input type="checkbox" name="tipo_t" value="TEC" onchange="actualizarInterfaz()"> Espacio Confinado (TEC)</label>
-        <label class="check-item"><input type="checkbox" name="tipo_t" value="TBU" onchange="actualizarInterfaz()"> Buceo (TBU)</label>
-        <label class="check-item"><input type="checkbox" name="tipo_t" value="TIZ" onchange="actualizarInterfaz()"> Izaje de Carga (TIZ)</label>
-        <label class="check-item"><input type="checkbox" name="tipo_t" value="TAL" onchange="actualizarInterfaz()"> Altura (TAL)</label>
-      </div>
-      <input type="text" class="form-control mt-3" name="otros_t" placeholder="Especificar otros...">
-    </div>
-
-    <div class="seccion-card">
-      <h3>4. Características del ambiente de trabajo que se presentan al momento de realizar la actividad</h3>
-      <div class="grid-checklist">
-        <label class="check-item"><input type="checkbox" name="ambiente" value="Ambiente contaminado"> Ambiente contaminado</label>
-        <label class="check-item"><input type="checkbox" name="ambiente" value="Ruido excesivo"> Ruido excesivo</label>
-        <label class="check-item"><input type="checkbox" name="ambiente" value="Tránsito de vehículos"> Tránsito de vehículos</label>
-        <label class="check-item"><input type="checkbox" name="ambiente" value="Exposición al sol"> Exposición al sol</label>
-        <label class="check-item"><input type="checkbox" name="ambiente" value="Piso húmedo"> Piso húmedo</label>
-        <label class="check-item"><input type="checkbox" name="ambiente" value="Cables expuestos"> Cables expuestos</label>
-        <label class="check-item"><input type="checkbox" name="ambiente" value="Tránsito de personas"> Tránsito de personas</label>
-        <label class="check-item"><input type="checkbox" name="ambiente" value="Vientos fuertes"> Vientos fuertes</label>
-        <label class="check-item"><input type="checkbox" name="ambiente" value="Lluvias"> Lluvias</label>
-      </div>
-      <div class="mt-3">
-        <label class="form-label fw-semibold small">Otros:</label>
-        <input type="text" class="form-control" name="otros_ambiente" placeholder="Especifique otras características del ambiente de trabajo...">
-      </div>
-    </div>
-
-    <div class="seccion-card">
-      <h3>5. Riesgos Observados</h3>
-      <div class="grid-checklist">
-        <label class="check-item"><input type="checkbox" name="riesgos" value="Incendio"> Incendio</label>
-        <label class="check-item"><input type="checkbox" name="riesgos" value="Caída de personas"> Caída de personas</label>
-        <label class="check-item"><input type="checkbox" name="riesgos" value="Caída de materiales"> Caída de materiales</label>
-        <label class="check-item"><input type="checkbox" name="riesgos" value="Intoxicación"> Intoxicación</label>
-        <label class="check-item"><input type="checkbox" name="riesgos" value="Explosión"> Explosión</label>
-        <label class="check-item"><input type="checkbox" name="riesgos" value="Derrame químico"> Derrame químico</label>
-        <label class="check-item"><input type="checkbox" name="riesgos" value="Partículas sólidas"> Partículas sólidas</label>
-        <label class="check-item"><input type="checkbox" name="riesgos" value="Choque térmico"> Choque térmico</label>
-        <label class="check-item"><input type="checkbox" name="riesgos" value="Deslizamiento"> Deslizamiento</label>
-        <label class="check-item"><input type="checkbox" name="riesgos" value="Postura forzada"> Postura forzada</label>
-        <label class="check-item"><input type="checkbox" name="riesgos" value="Sobreesfuerzo"> Sobreesfuerzo</label>
-        <label class="check-item"><input type="checkbox" name="riesgos" value="Derrumbe"> Derrumbe</label>
-        <label class="check-item"><input type="checkbox" name="riesgos" value="Descarga eléctrica"> Descarga eléctrica</label>
-      </div>
-      <div class="mt-3">
-        <label class="form-label fw-semibold small">Otros:</label>
-        <input type="text" class="form-control" name="otros_riesgos" placeholder="Especifique otros riesgos...">
-      </div>
-    </div>
-
-    <div id="secEPP" class="seccion-card hidden">
-      <h3>EPP mínimos obligatorios para la protección</h3>
-      <p class="text-danger small mb-3 fw-medium">* Validar con Seguridad Industrial según la actividad.</p>
-      <div id="contEPP" class="grid-checklist"></div>
-    </div>
-
-    <div class="seccion-card">
-      <h3>7. Herramientas / Equipos utilizados</h3>
-      <div class="grid-checklist">
-        <label class="check-item"><input type="checkbox" name="herramientas_check" value="Andamios tipo torre"> Andamios tipo torre o estructura</label>
-        <label class="check-item"><input type="checkbox" name="herramientas_check" value="Andamios suspendidos"> Andamios suspendidos</label>
-        <label class="check-item"><input type="checkbox" name="herramientas_check" value="Plataformas Elevación"> Plataformas/Equipos de Elevación</label>
-        <label class="check-item"><input type="checkbox" name="herramientas_check" value="Escaleras"> Escaleras</label>
-        <label class="check-item"><input type="checkbox" name="herramientas_check" value="Medidos Multigases"> Medidos Multigases</label>
-        <label class="check-item"><input type="checkbox" name="herramientas_check" value="Amoladora Esmeriladora"> Amoladora Esmeriladora</label>
-        <label class="check-item"><input type="checkbox" name="herramientas_check" value="Sierra circular"> Sierra circular</label>
-        <label class="check-item"><input type="checkbox" name="herramientas_check" value="Máq. Soldar"> Máq. De soldar eléctrica</label>
-        <label class="check-item"><input type="checkbox" name="Máquina Oxicorte"> Máquina Oxicorte</label>
-        <label class="check-item"><input type="checkbox" name="herramientas_check" value="Maquinaria Pesada"> Maquinaria Pesada</label>
-        <label class="check-item"><input type="checkbox" name="herramientas_check" value="Grúa Móvil"> Grúa Móvil</label>
-        <label class="check-item"><input type="checkbox" name="herramientas_check" value="Brazo articulado"> Brazo articulado</label>
-        <label class="check-item"><input type="checkbox" name="herramientas_check" value="Side Boom"> Side Boom</label>
-        <label class="check-item"><input type="checkbox" name="herramientas_check" value="Martillo Neumático"> Martillo Neumático</label>
-      </div>
-      <div class="mt-3">
-        <label class="form-label fw-semibold small">Otros:</label>
-        <input type="text" class="form-control" name="otros_herramientas" placeholder="Especifique otras herramientas o equipos...">
-      </div>
-    </div>
-
-    <div id="seccion7" class="seccion-card hidden">
-      <h3>8. Previsiones mínimas obligatorias para inicio y ejecución del trabajo</h3>
-      <div id="contenedorChecklists"></div>
-    </div>
-
-    <div class="seccion-card">
-      <h3>9. Personal autorizado para la realización del trabajo</h3>
-      <div class="row g-3 mb-4">
-        <div class="col-sm-9">
-          <select class="form-select" id="selPersonal">
-            <option value="">Cargando personal...</option>
-          </select>
-        </div>
-        <div class="col-sm-3">
-          <button type="button" class="btn btn-outline-primary w-100 h-100" onclick="agregarPersonal()">+ Agregar</button>
-        </div>
-      </div>
-      
-      <div class="table-responsive">
-        <table class="table table-hover align-middle">
-          <thead>
-            <tr>
-              <th>Nombre Completo</th>
-              <th class="text-center" width="100">DC-3</th>
-              <th class="text-center" width="100">IMSS</th>
-              <th class="text-center" width="80">Acción</th>
-            </tr>
-          </thead>
-          <tbody id="listaPersonal"></tbody>
-        </table>
-      </div>
-    </div>
-
-    <button type="button" class="btn-submit" id="btnSubmit" onclick="registrar()">
-      REGISTRAR TRABAJO Y GENERAR PDF
-    </button>
-  </form>
 </div>
 
 <script>
-  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzLNNtPWuiMVSK9tb8e4Q8n_0LxC31maP2CVPLNaRON_0CNvTBaNo6cHhsGgXLbtM0p/exec';
+    const MI_URL = "https://script.google.com/macros/s/AKfycbxldLIlq-w2hUaouOIy_mTAlni4xNa88N3gMw9eQFEPByohqAZj1rp0uGSU8Qn-ZoDr/exec";
+    let baseDatos = [];
 
-  window.onload = function() {
-    new TomSelect("#depto_trabajo", {
-      create: false,
-      sortField: { field: "text", order: "asc" },
-      placeholder: "Busca un área...",
-      allowEmptyOption: true
-    });
+    window.onload = async () => {
+        try {
+            const resp = await fetch(`${MI_URL}?action=getCapitanes`);
+            const data = await resp.json();
+            const sel = document.getElementById("loginNombre");
+            sel.innerHTML = '<option value="">-- Seleccione --</option>';
+            data.capitanes.forEach(c => sel.innerHTML += `<option value="${c}">${c}</option>`);
+        } catch (e) { console.error("Error", e); }
+    };
 
-    fetch(SCRIPT_URL + "?action=getListasFormulario")
-      .then(response => response.json())
-      .then(data => {
-        if (data.elaboradores) {
-          llenarUnSelect('resp_elab', data.elaboradores);
+    async function intentarLogin() {
+        const nombre = document.getElementById("loginNombre").value;
+        const pass = document.getElementById("loginPass").value;
+        if(!nombre || !pass) return alert("Complete los datos");
+        const btn = document.getElementById("btnLogin");
+        btn.disabled = true; btn.innerText = "VERIFICANDO...";
+        try {
+            const resp = await fetch(`${MI_URL}?action=login&nombre=${encodeURIComponent(nombre)}&pass=${encodeURIComponent(pass)}`);
+            const res = await resp.json();
+            if(res.success) {
+                document.getElementById("loginSection").style.display = "none";
+                document.getElementById("mainPanel").style.display = "block";
+                document.getElementById("txtBienvenida").innerText = "Capitán: " + nombre;
+                const selObs = document.getElementById("selectObservador");
+                res.observadores.forEach(o => selObs.innerHTML += `<option value="${o}">${o}</option>`);
+            } else { alert("Error: " + res.message); }
+        } catch(e) { alert("Error"); }
+        finally { btn.disabled = false; btn.innerText = "INGRESAR"; }
+    }
+
+    async function cargarReportes() {
+        const obs = document.getElementById("selectObservador").value;
+        const selRep = document.getElementById("selectReporte");
+        const loader = document.getElementById("loaderRep");
+        document.getElementById("visorDetalle").style.display = "none";
+        if(!obs) return;
+        loader.style.display = "block"; selRep.disabled = true;
+        try {
+            const resp = await fetch(`${MI_URL}?action=leerTodo&observador=${encodeURIComponent(obs)}`);
+            baseDatos = await resp.json();
+            selRep.innerHTML = '<option value="">-- Seleccione reporte --</option>';
+            if(baseDatos.length > 0) {
+                baseDatos.forEach(r => { selRep.innerHTML += `<option value="${r.id}">Sem ${r.semana} - ${r.sitio}</option>`; });
+                selRep.disabled = false;
+            } else { selRep.innerHTML = '<option value="">Sin reportes pendientes</option>'; }
+        } catch(e) { alert("Error al cargar datos"); }
+        loader.style.display = "none";
+    }
+
+    function crearFila(titulo, valor) {
+        if (!valor) return "";
+        const valStr = valor.toString().trim().toUpperCase();
+        if (valStr === "N/A" || valStr === "" || valStr === "UNDEFINED") return "";
+        return `<div class="data-row"><b>${titulo}:</b> ${valor}</div>`;
+    }
+
+    function mostrarDetalle() {
+        const id = document.getElementById("selectReporte").value;
+        const item = baseDatos.find(x => x.id == id);
+        if(!item) return;
+
+        document.getElementById("idFila").value = item.id;
+        const tipoNormalizado = (item.tipo || "").toLowerCase();
+        const esActo = tipoNormalizado.includes("acto");
+        const esCondicion = tipoNormalizado.includes("condicion") || tipoNormalizado.includes("condición");
+
+        // LÓGICA DE CALIFICACIÓN (Imperativo/Normal)
+        const areaCalificacion = document.getElementById("areaCalificacion");
+        if(esCondicion) {
+            areaCalificacion.style.display = "block";
+        } else {
+            areaCalificacion.style.display = "none";
+            document.getElementById("calificacionPrioridad").value = "Normal";
         }
-        if (data.personalGeneral) {
-          llenarUnSelect('resp_ejec', data.personalGeneral);
-          llenarUnSelect('selPersonal', data.personalGeneral);
+
+        // Badge
+        const colorBadge = esActo ? 'var(--navy)' : (esCondicion ? 'var(--error)' : 'var(--gold)');
+        document.getElementById("badgeCont").innerHTML = `<span class="badge-tipo" style="background:${colorBadge}">${(item.tipo || "REPORTE").toUpperCase()}</span>`;
+
+        let htmlFinal = "";
+        if (esActo) {
+            htmlFinal += crearFila("Semana", item.semana);
+            htmlFinal += crearFila("Fecha Registro", item.fechaReg);
+            htmlFinal += crearFila("Sitio / Ubicación", item.sitio);
+            htmlFinal += crearFila("Equipo (EPP) Provisto", item.provisto);
+            htmlFinal += crearFila("Equipo (EPP) Faltante", item.faltante);
+        } else {
+            htmlFinal += crearFila("Semana", item.semana);
+            htmlFinal += crearFila("Fecha Registro", item.fechaReg);
+            htmlFinal += crearFila("Sitio / Ubicación", item.sitio);
+            htmlFinal += crearFila("Responsables", item.responsables);
+            htmlFinal += crearFila("Descripción de la Condición", item.condicionDesc);
         }
-      })
-      .catch(error => {
-        console.error('Error al cargar nombres:', error);
-      });
-  };
 
-  function llenarUnSelect(id, nombres) {
-    const sel = document.getElementById(id);
-    if(!sel) return;
-    nombres.forEach(n => {
-      let opt = document.createElement('option');
-      opt.value = n;
-      opt.textContent = n;
-      sel.appendChild(opt);
-    });
+        document.getElementById("datosVisor").innerHTML = htmlFinal;
 
-    if (sel.tomselect) {
-      sel.tomselect.destroy();
+        let urlVisualizacion = "";
+        const fotoValida = item.foto && item.foto.toString().trim().toUpperCase() !== "N/A";
+        if(fotoValida && item.foto.includes("drive.google.com")) {
+            const match = item.foto.match(/[-\w]{25,}/);
+            if(match) urlVisualizacion = `https://drive.google.com/thumbnail?id=${match[0]}&sz=w1000`;
+        }
+
+        const contenedorFoto = document.getElementById("valFoto");
+        contenedorFoto.innerHTML = urlVisualizacion ? `<div class="section-title" style="margin-top:20px;">Evidencia Fotográfica</div><a href="${item.foto}" target="_blank"><img src="${urlVisualizacion}" class="img-evidencia"></a>` : "";
+
+        document.getElementById("visorDetalle").style.display = "block";
     }
 
-    new TomSelect("#" + id, {
-      create: false,
-      sortField: { field: "text", order: "asc" },
-      placeholder: "Busca un nombre...",
-      allowEmptyOption: true
-    });
-  }
-
-  function calcularTiempo() {
-    const inicio = document.getElementById('h_ini').value;
-    const fin = document.getElementById('h_fin').value;
-    if (inicio && fin) {
-      const [h1, m1] = inicio.split(':').map(Number);
-      const [h2, m2] = fin.split(':').map(Number);
-      let d1 = new Date(); d1.setHours(h1, m1, 0);
-      let d2 = new Date(); d2.setHours(h2, m2, 0);
-      if (d2 < d1) d2.setDate(d2.getDate() + 1);
-      const difMs = d2 - d1;
-      const difHoras = Math.floor(difMs / 3600000);
-      const difMinutos = Math.floor((difMs % 3600000) / 60000);
-      document.getElementById('t_est').value = `${difHoras} hrs ${difMinutos} min`;
-    }
-  }
-
-const eppMaster = {
-    TCA: ["Casco de seguridad", "Tapones auditivos", "Guantes de carnaza", "Pantalla facial(validar)", "Mascarilla para soldador(validar)", "Careta de soldador(validar)", "Peto de carnaza", "Manga de carnaza(validar)", "Polainas de carnaza(validar)", "Overol(validar)", "Filtros Part. Inorgan/org.(validar)", "Lentes oxicorte(validar)", "Monjas(validar)", "Botas dieléctricas"],
-    TIZ: ["Casco de seguridad", "Barbiquejo", "Guantes de carnaza", "Chaleco/Reflejantes", "Botas de seguridad con concha", "Guantes de seguridad de maniobrista"],
-    TEL: ["Guantes dieléctricos", "Casco dieléctrico", "Botas dieléctricas"],
-    TEX: ["Casco de seguridad", "Tapones auditivos(validar)", "Conchas de seguridad(validar)", "Guantes de carnaza(validar)", "Chaleco/Reflejantes", "Guantes para perforistas(validar)", "Botas de seguridad con concha", "Filtros Part. Inorgan/Org.", "Lentes de protección partículas"],
-    TEC: ["Chaleco/Reflejantes", "Botas de seguridad con concha", "Filtros Part. Inorgan/Org.(validar)", "Arnés(validar)", "Línea de vida(validar)", "Mascarilla respirador 1/2 cara", "Guantes de seguridad de maniobrista"],
-    TBU: ["Traje de buceo", "Tanque de aire", "Aletas", "Botas de buceo"],
-    TAL: ["Casco de seguridad", "Barbiquejo", "Chaleco/Reflejantes(validar)", "Botas de seguridad con concha", "Arnés", "Línea de vida"]
-  };
-
-  const preguntasMaster = {
-    TCA: ["¿Área delimitada?", "¿Material inflamable retirado (10m)?", "¿Área ventilada?", "¿Cuenta con mampara?", "¿Extintor PQS?", "¿Alimentación eléctrica adecuada?", "¿Equipo de soldar en buen estado?", "¿Cables aislados?", "¿Extensiones de uso rudo?"],
-    TEL: ["¿Desergenización verificada?", "¿Bloqueo y candadeo aplicado?", "¿Cable vulcanizado?", "¿Puesta a tierra < 10 ohmios?", "¿Doble aislamiento en portátiles?", "¿Área delimitada?", "¿Extintor CO2/PQS?", "¿Circuitos con tierra?", "¿Cables y enchufes en buen estado?"],
-    TEX: ["¿Estado del terreno verificado?", "¿Planos de tuberías revisados?", "¿Paredes protegidas?", "¿Accesos seguros?", "¿Escalera de entrada/salida?", "¿Escalera sobresale 90cm?", "¿Barandas en áreas de paso?", "¿Elementos para apuntalamiento?", "¿Zanja señalizada (5m)?", "¿Rescate disponible?"],
-    TEC: ["¿Vigía tiempo completo?", "¿Presión arterial revisada?", "¿Equipos bloqueados?", "¿Iluminación antichispa?", "¿Espacio libre de materiales peligrosos?", "¿Ventilación adecuada?", "¿Hojas de seguridad (HDS)?", "¿Equipo de rescate?"],
-    TIZ: ["¿Operador certificado?", "¿Área delimitada?", "¿Dimensiones de carga claras?", "¿Superficie estable y nivelada?", "¿Equipo en buen estado?", "¿Condiciones climáticas seguras?", "¿Radio de trabajo > 3m?", "¿Eslingas en buen estado?", "¿Plan de emergencia claro?"],
-    TAL: ["¿Área acordonada?", "¿Libre de gases?", "¿Trabajador sin mareos/afecciones?", "¿Presión arterial OK?", "¿Iluminación adecuada?", "¿Área libre de materiales?"]
-  };
-
-  function actualizarInterfaz() {
-    const seleccionados = Array.from(document.querySelectorAll('input[name="tipo_t"]:checked')).map(c => c.value);
-    const contEPP = document.getElementById("contEPP");
-    let eppSet = new Set();
-    seleccionados.forEach(t => { if(eppMaster[t]) eppMaster[t].forEach(item => eppSet.add(item)); });
-    document.getElementById("secEPP").classList.toggle("hidden", eppSet.size === 0);
-    
-    contEPP.innerHTML = Array.from(eppSet).map(item => `<label class="check-item"><input type="checkbox" name="epp_check" value="${item}" checked> ${item}</label>`).join('');
-
-    const contenedor = document.getElementById("contenedorChecklists");
-    const seccion7 = document.getElementById("seccion7");
-    contenedor.innerHTML = "";
-    seccion7.classList.toggle("hidden", seleccionados.length === 0);
-
-    seleccionados.forEach(tipo => {
-      if(!preguntasMaster[tipo]) return;
-      let html = `<div class="mb-5"><h6 class="text-primary fw-bold mb-3">REQUISITOS PARA ${tipo}:</h6>`;
-      preguntasMaster[tipo].forEach((preg, i) => {
-        html += `<div class="pregunta-row"><span>${preg}</span><div class="d-flex gap-3">
-                 <label class="small fw-semibold"><input type="radio" name="${tipo}_${i}" value="SI"> SÍ</label>
-                 <label class="small fw-semibold"><input type="radio" name="${tipo}_${i}" value="NO"> NO</label></div></div>`;
-      });
-      if(tipo === "TEC") html += generarHtmlMonitoreo();
-      if(tipo === "TAL") html += generarHtmlSubTAL();
-      html += `</div>`;
-      contenedor.innerHTML += html;
-    });
-  }
-
-  function generarHtmlMonitoreo() {
-    return `<div class="mt-4 p-4 border-0 rounded bg-light shadow-sm">
-            <h6 class="fw-bold text-dark border-bottom pb-2 mb-3">MONITOREO DE ATMOSFERA (TEC)</h6>
-            <div class="row g-3">
-            <div class="col-md-4"><label class="small fw-bold">O2 (19.5-23.5%)</label><input type="text" class="form-control" name="tec_o2"></div>
-            <div class="col-md-4"><label class="small fw-bold">CO (<35 ppm)</label><input type="text" class="form-control" name="tec_co"></div>
-            <div class="col-md-4"><label class="small fw-bold">Explosividad (<10%)</label><input type="text" class="form-control" name="tec_expl"></div></div></div>`;
-  }
-
-  function generarHtmlSubTAL() {
-    return `<div class="mt-4"><h6 class="fw-bold">Equipos específicos de Altura:</h6>
-            ${generarSeccionHija('Escaleras Portátiles', 'esc', ['¿Fibra de vidrio?', '¿Buen estado?', '¿Base firme?', '¿3 puntos contacto?'])}
-            ${generarSeccionHija('Andamios Estructurales', 'and', ['¿Barandas 90cm?', '¿Rodapiés 10cm?', '¿Nivelados?', '¿Sin corrosión?'])}</div>`;
-  }
-
-  function generarSeccionHija(titulo, id, pregs) {
-    let sub = `<div class="mb-3 border rounded p-3 bg-white shadow-sm"><div class="d-flex justify-content-between align-items-center mb-2">
-               <label class="fw-bold text-secondary">${titulo}:</label>
-               <select class="form-select form-select-sm w-auto" onchange="document.getElementById('sub_${id}').classList.toggle('hidden', this.value === 'B')">
-               <option value="B">No aplica</option><option value="A">Aplica</option></select></div>
-               <div id="sub_${id}" class="sub-seccion hidden">`;
-    pregs.forEach((p, i) => {
-      sub += `<div class="pregunta-row"><span>${p}</span><div class="d-flex gap-3">
-              <label class="small"><input type="radio" name="${id}_${i}" value="SI"> S</label> <label class="small"><input type="radio" name="${id}_${i}" value="NO"> N</label></div></div>`;
-    });
-    return sub + `</div></div>`;
-  }
-
-  function agregarPersonal() {
-    const sel = document.getElementById("selPersonal");
-    const n = sel.value;
-    if(!n) return;
-    const tabla = document.getElementById("listaPersonal");
-    tabla.innerHTML += `<tr><td class="fw-medium nombre-per">${n}</td>
-      <td class="text-center"><input class="form-check-input dc3-per" type="checkbox"></td>
-      <td class="text-center"><input class="form-check-input imss-per" type="checkbox"></td>
-      <td class="text-center"><button type="button" class="btn btn-sm btn-outline-danger" onclick="this.closest('tr').remove()">✕</button></td></tr>`;
-    sel.tomselect.clear();
-  }
-
-  function registrar() {
-    const form = document.getElementById('formPeligroso');
-    const btn = document.getElementById('btnSubmit');
-
-    if(!form.fecha.value || !form.resp_elab.value || !form.depto_trabajo.value) {
-      alert("Por favor completa los campos obligatorios (Fecha, Responsables y Departamento)");
-      return;
-    }
-
-    btn.disabled = true;
-    btn.innerText = "PROCESANDO DATOS Y GENERANDO PDF...";
-
-    let personalHTML = "";
-    const filasPersonal = document.querySelectorAll("#listaPersonal tr");
-    
-    if(filasPersonal.length === 0) {
-      personalHTML = '<tr><td colspan="3" style="border:0.5pt solid black; text-align:center;">Sin personal registrado</td></tr>';
-    } else {
-      filasPersonal.forEach(tr => {
-        let nombre = tr.querySelector(".nombre-per").innerText;
-        let dc3 = tr.querySelector(".dc3-per").checked ? "X" : "";
-        let imss = tr.querySelector(".imss-per").checked ? "X" : "";
-        personalHTML += `<tr>
-          <td style="border:0.5pt solid black; padding:3px;">${nombre}</td>
-          <td style="border:0.5pt solid black; text-align:center;">${dc3}</td>
-          <td style="border:0.5pt solid black; text-align:center;">${imss}</td>
-        </tr>`;
-      });
-    }
-
-    const formData = new FormData(form);
-    const params = new URLSearchParams();
-
-    for (const [key, value] of formData.entries()) {
-        params.append(key, value);
-    }
-    params.append("personal_pdf", personalHTML);
-
-    fetch(SCRIPT_URL, { 
-      method: 'POST', 
-      mode: 'cors', // Cambiado a 'cors' para poder leer la respuesta JSON
-      body: params.toString(),
-      headers: { "Content-Type": "application/x-www-form-urlencoded" }
-    })
-    .then(response => response.json()) // Procesamos la respuesta JSON del servidor
-    .then(res => {
-      if (res.status === "success") {
-        // --- LÓGICA DE DESCARGA AUTOMÁTICA ---
-        const link = document.createElement('a');
-        link.href = res.url;
-        link.target = "_blank"; // Asegura compatibilidad
-        link.download = "Permiso_PTAR.pdf";
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-        // -------------------------------------
-
-        alert("¡Registro exitoso! El PDF se ha generado y descargado.");
+    document.getElementById("formDictamen").onsubmit = async (e) => {
+        e.preventDefault();
+        const btn = document.getElementById("btnEnviar");
+        if(!confirm("¿Confirmar veredicto y notificación?")) return;
         
-        form.reset();
-        document.getElementById('resp_elab').tomselect.clear();
-        document.getElementById('resp_ejec').tomselect.clear();
-        document.getElementById('selPersonal').tomselect.clear();
-        document.getElementById('depto_trabajo').tomselect.clear();
-        document.getElementById("listaPersonal").innerHTML = "";
-        document.getElementById("t_est").value = "";
-        actualizarInterfaz();
-      } else {
-        alert("Error: " + res.message);
-      }
-    })
-    .catch(error => {
-      alert("Error al conectar con el servidor.");
-      console.error('Error!', error);
-    })
-    .finally(() => {
-      btn.disabled = false;
-      btn.innerText = "REGISTRAR TRABAJO Y GENERAR PDF";
-    });
-  }
+        btn.disabled = true; btn.innerText = "PROCESANDO...";
+        const formData = new FormData(e.target);
+        const params = new URLSearchParams(formData);
+
+        try {
+            // Se envía 'idFila', 'dictamen', 'comentarios' y 'calificacionPrioridad'
+            await fetch(MI_URL, { method: 'POST', body: params, mode: 'no-cors' });
+            alert("Veredicto guardado y notificación enviada.");
+            document.getElementById("visorDetalle").style.display = "none";
+            cargarReportes(); 
+        } catch(e) { alert("Error al guardar."); }
+        finally { btn.disabled = false; btn.innerText = "GUARDAR Y NOTIFICAR POR CORREO"; }
+    };
 </script>
 </body>
 </html>
-
-
