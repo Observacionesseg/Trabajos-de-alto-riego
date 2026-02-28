@@ -152,8 +152,208 @@
     }
   </style>
 </head>
+<body>
+
+<div class="container">
+  <div class="text-center mb-5">
+    <h2 style="color: var(--azul-orcela); font-weight: 800; text-transform: uppercase;">Permiso de Trabajo Peligroso</h2>
+    <p class="text-muted">Grupo Industrial Roche - Sistema de Gestión de Seguridad</p>
+  </div>
+
+  <form id="formPeligroso">
+    <div class="seccion-card">
+      <h3>1. Tipo de Permiso</h3>
+      <div class="d-flex gap-5 mb-3">
+        <div class="form-check"><input class="form-check-input" type="radio" name="p_tipo" value="Diario" checked> <label class="fw-medium">Diario</label></div>
+        <div class="form-check"><input class="form-check-input" type="radio" name="p_tipo" value="Por Trabajo"> <label class="fw-medium">Por Trabajo</label></div>
+      </div>
+      <div class="p-2 px-3 bg-light rounded d-inline-block">
+        <span class="text-muted-small">Autorización No:</span> <span id="folio" class="fw-bold text-primary ms-2">AUTOMÁTICO</span>
+      </div>
+    </div>
+
+    <div class="seccion-card">
+      <h3>2. Descripción del Trabajo y/o Actividad</h3>
+      <div class="row g-3">
+        <div class="col-md-3"><label class="form-label fw-semibold small">Fecha</label><input type="date" class="form-control" name="fecha"></div>
+        <div class="col-md-3"><label class="form-label fw-semibold small">Hora Inicio</label><input type="time" class="form-control" name="h_ini" id="h_ini" onchange="calcularTiempo()"></div>
+        <div class="col-md-3"><label class="form-label fw-semibold small">Hora Final</label><input type="time" class="form-control" name="h_fin" id="h_fin" onchange="calcularTiempo()"></div>
+        <div class="col-md-3"><label class="form-label fw-semibold small">Tiempo Estimado</label><input type="text" class="form-control form-control-readonly" name="t_est" id="t_est" readonly placeholder="Calculado..."></div>
+        
+        <div class="col-md-6">
+          <label class="form-label fw-semibold small">Responsable Elaboración</label>
+          <select class="form-select" name="resp_elab" id="resp_elab">
+            <option value="">Cargando nombres...</option>
+          </select>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label fw-semibold small">Responsable Ejecución</label>
+          <select class="form-select" name="resp_ejec" id="resp_ejec">
+            <option value="">Cargando nombres...</option>
+          </select>
+        </div>
+
+        <div class="col-md-6">
+          <label class="form-label fw-semibold small">Razón social del contratista (si aplica)</label>
+          <input type="text" class="form-control" name="razon_social" placeholder="Nombre de la empresa externa">
+        </div>
+        <div class="col-md-6">
+          <label class="form-label fw-semibold small">Departamento/Área donde se realiza el trabajo</label>
+          <select class="form-select" name="depto_trabajo" id="depto_trabajo">
+             <option value="COSECHA Y CAMPO">COSECHA Y CAMPO</option>
+ <option value="LAVADORAS">LAVADORAS</option>
+ <option value="MOLINOS Y ENVASADOS">MOLINOS Y ENVASADOS</option>
+ <option value="MANT INDUSTRIAL">MANT INDUSTRIAL</option>
+ <option value="MANT ESP COLORADAS">MANT ESP COLORADAS</option>
+ <option value="EMBARQUES">EMBARQUES</option>
+ <option value="CONTROL DE CALIDAD">CONTROL DE CALIDAD</option>
+ <option value="OFICINAS">OFICINAS</option>
+ <option value="ALMACEN">ALMACEN</option>
+ <option value="PRESTACIONES">PRESTACIONES</option>
+ <option value="BIOLOGIA Y AQUACULTURA">BIOLOGIA Y AQUACULTURA</option>
+ <option value="MANTTO. Y OPERACION MUELLE">MANTTO. Y OPERACION MUELLE</option>
+ <option value="REGISTRO">REGISTRO</option>
+          </select>
+        </div>
+
+        <div class="col-12">
+          <label class="form-label fw-semibold small">Ubicación del sitio donde se realizará el trabajo</label>
+          <input type="text" class="form-control" name="ubicacion_sitio" placeholder="Ej: Azotea edificio B, Almacén de químicos...">
+        </div>
+
+        <div class="col-12">
+          <label class="form-label fw-semibold small">Descripción Detallada del Trabajo</label>
+          <textarea class="form-control" name="desc_t" rows="3" placeholder="Describa brevemente las tareas a realizar..."></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="seccion-card">
+      <h3>3. Tipo y característica del trabajo</h3>
+      <div class="grid-checklist">
+        <label class="check-item"><input type="checkbox" name="tipo_t" value="TCA" onchange="actualizarInterfaz()"> en Caliente (TCA)</label>
+        <label class="check-item"><input type="checkbox" name="tipo_t" value="TEL" onchange="actualizarInterfaz()"> Eléctrico (TEL)</label>
+        <label class="check-item"><input type="checkbox" name="tipo_t" value="TEX" onchange="actualizarInterfaz()"> Excavación (TEX)</label>
+        <label class="check-item"><input type="checkbox" name="tipo_t" value="TEC" onchange="actualizarInterfaz()"> Espacio Confinado (TEC)</label>
+        <label class="check-item"><input type="checkbox" name="tipo_t" value="TBU" onchange="actualizarInterfaz()"> Buceo (TBU)</label>
+        <label class="check-item"><input type="checkbox" name="tipo_t" value="TIZ" onchange="actualizarInterfaz()"> Izaje de Carga (TIZ)</label>
+        <label class="check-item"><input type="checkbox" name="tipo_t" value="TAL" onchange="actualizarInterfaz()"> Altura (TAL)</label>
+      </div>
+      <input type="text" class="form-control mt-3" name="otros_t" placeholder="Especificar otros riesgos...">
+    </div>
+
+    <div class="seccion-card">
+      <h3>4. Características del ambiente de trabajo que se presentan al momento de realizar la actividad</h3>
+      <div class="grid-checklist">
+        <label class="check-item"><input type="checkbox" name="ambiente" value="Ambiente contaminado"> Ambiente contaminado</label>
+        <label class="check-item"><input type="checkbox" name="ambiente" value="Ruido excesivo"> Ruido excesivo</label>
+        <label class="check-item"><input type="checkbox" name="ambiente" value="Tránsito de vehículos"> Tránsito de vehículos</label>
+        <label class="check-item"><input type="checkbox" name="ambiente" value="Exposición al sol"> Exposición al sol</label>
+        <label class="check-item"><input type="checkbox" name="ambiente" value="Piso húmedo"> Piso húmedo</label>
+        <label class="check-item"><input type="checkbox" name="ambiente" value="Cables expuestos"> Cables expuestos</label>
+        <label class="check-item"><input type="checkbox" name="ambiente" value="Tránsito de personas"> Tránsito de personas</label>
+        <label class="check-item"><input type="checkbox" name="ambiente" value="Vientos fuertes"> Vientos fuertes</label>
+        <label class="check-item"><input type="checkbox" name="ambiente" value="Lluvias"> Lluvias</label>
+      </div>
+      <div class="mt-3">
+        <label class="form-label fw-semibold small">Otros:</label>
+        <input type="text" class="form-control" name="otros_ambiente" placeholder="Especifique otras características del ambiente de trabajo...">
+      </div>
+    </div>
+
+    <div class="seccion-card">
+      <h3>5. Riesgos Observados</h3>
+      <div class="grid-checklist">
+        <label class="check-item"><input type="checkbox" name="riesgos" value="Incendio"> Incendio</label>
+        <label class="check-item"><input type="checkbox" name="riesgos" value="Caída de personas"> Caída de personas</label>
+        <label class="check-item"><input type="checkbox" name="riesgos" value="Caída de materiales"> Caída de materiales</label>
+        <label class="check-item"><input type="checkbox" name="riesgos" value="Intoxicación"> Intoxicación</label>
+        <label class="check-item"><input type="checkbox" name="riesgos" value="Explosión"> Explosión</label>
+        <label class="check-item"><input type="checkbox" name="riesgos" value="Derrame químico"> Derrame químico</label>
+        <label class="check-item"><input type="checkbox" name="riesgos" value="Partículas sólidas"> Partículas sólidas</label>
+        <label class="check-item"><input type="checkbox" name="riesgos" value="Choque térmico"> Choque térmico</label>
+        <label class="check-item"><input type="checkbox" name="riesgos" value="Deslizamiento"> Deslizamiento</label>
+        <label class="check-item"><input type="checkbox" name="riesgos" value="Postura forzada"> Postura forzada</label>
+        <label class="check-item"><input type="checkbox" name="riesgos" value="Sobreesfuerzo"> Sobreesfuerzo</label>
+        <label class="check-item"><input type="checkbox" name="riesgos" value="Derrumbe"> Derrumbe</label>
+        <label class="check-item"><input type="checkbox" name="riesgos" value="Descarga eléctrica"> Descarga eléctrica</label>
+      </div>
+      <div class="mt-3">
+        <label class="form-label fw-semibold small">Otros:</label>
+        <input type="text" class="form-control" name="otros_riesgos" placeholder="Especifique otros riesgos...">
+      </div>
+    </div>
+
+    <div id="secEPP" class="seccion-card hidden">
+      <h3>EPP mínimos obligatorios para la protección</h3>
+      <p class="text-danger small mb-3 fw-medium">* Validar con Seguridad Industrial según la actividad.</p>
+      <div id="contEPP" class="grid-checklist"></div>
+    </div>
+
+    <div class="seccion-card">
+      <h3>7. Herramientas / Equipos utilizados</h3>
+      <div class="grid-checklist">
+        <label class="check-item"><input type="checkbox" name="herramientas_check" value="Andamios tipo torre"> Andamios tipo torre o estructura</label>
+        <label class="check-item"><input type="checkbox" name="herramientas_check" value="Andamios suspendidos"> Andamios suspendidos</label>
+        <label class="check-item"><input type="checkbox" name="herramientas_check" value="Plataformas Elevación"> Plataformas/Equipos de Elevación</label>
+        <label class="check-item"><input type="checkbox" name="herramientas_check" value="Escaleras"> Escaleras</label>
+        <label class="check-item"><input type="checkbox" name="herramientas_check" value="Medidos Multigases"> Medidos Multigases</label>
+        <label class="check-item"><input type="checkbox" name="herramientas_check" value="Amoladora Esmeriladora"> Amoladora Esmeriladora</label>
+        <label class="check-item"><input type="checkbox" name="herramientas_check" value="Sierra circular"> Sierra circular</label>
+        <label class="check-item"><input type="checkbox" name="herramientas_check" value="Máq. Soldar"> Máq. De soldar eléctrica</label>
+        <label class="check-item"><input type="checkbox" name="Máquina Oxicorte"> Máquina Oxicorte</label>
+        <label class="check-item"><input type="checkbox" name="herramientas_check" value="Maquinaria Pesada"> Maquinaria Pesada</label>
+        <label class="check-item"><input type="checkbox" name="herramientas_check" value="Grúa Móvil"> Grúa Móvil</label>
+        <label class="check-item"><input type="checkbox" name="herramientas_check" value="Brazo articulado"> Brazo articulado</label>
+        <label class="check-item"><input type="checkbox" name="herramientas_check" value="Side Boom"> Side Boom</label>
+        <label class="check-item"><input type="checkbox" name="herramientas_check" value="Martillo Neumático"> Martillo Neumático</label>
+      </div>
+      <div class="mt-3">
+        <label class="form-label fw-semibold small">Otros:</label>
+        <input type="text" class="form-control" name="otros_herramientas" placeholder="Especifique otras herramientas o equipos...">
+      </div>
+    </div>
+
+    <div id="seccion7" class="seccion-card hidden">
+      <h3>8. Previsiones mínimas obligatorias para inicio y ejecución del trabajo</h3>
+      <div id="contenedorChecklists"></div>
+    </div>
+
+    <div class="seccion-card">
+      <h3>9. Personal autorizado para la realización del trabajo</h3>
+      <div class="row g-3 mb-4">
+        <div class="col-sm-9">
+          <select class="form-select" id="selPersonal">
+            <option value="">Cargando personal...</option>
+          </select>
+        </div>
+        <div class="col-sm-3">
+          <button type="button" class="btn btn-outline-primary w-100 h-100" onclick="agregarPersonal()">+ Agregar</button>
+        </div>
+      </div>
+      
+      <div class="table-responsive">
+        <table class="table table-hover align-middle">
+          <thead>
+            <tr>
+              <th>Nombre Completo</th>
+              <th class="text-center" width="100">DC-3</th>
+              <th class="text-center" width="100">IMSS</th>
+              <th class="text-center" width="80">Acción</th>
+            </tr>
+          </thead>
+          <tbody id="listaPersonal"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <button type="button" class="btn-submit" id="btnSubmit" onclick="registrar()">
+      REGISTRAR TRABAJO Y GENERAR PDF
+    </button>
+  </form>
+</div>
 <script>
-  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzm-WCDJdo8L8pZdotc6YvjKOiDmH86MRmYMjCoyxEd_F42moCjImSHmWdjtspwQo1f/exec';
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwzRsgSe5zplD3dIPB7SpJYWV3UOa1dgrdyM4vMDUdnn2m6klBAvLbFthHxFmBQZPBb/exec';
 
   window.onload = function() {
     new TomSelect("#depto_trabajo", {
@@ -179,28 +379,33 @@
       });
   };
 
-  function llenarUnSelect(id, nombres) {
-    const sel = document.getElementById(id);
-    if(!sel) return;
-    nombres.forEach(n => {
-      let opt = document.createElement('option');
-      opt.value = n;
-      opt.textContent = n;
-      sel.appendChild(opt);
-    });
+function llenarUnSelect(id, nombres) {
+  const sel = document.getElementById(id);
+  if(!sel) return;
+  
+  // Limpiar opciones previas
+  sel.innerHTML = '<option value="">Busca un nombre...</option>';
+  
+  nombres.forEach(n => {
+    let opt = document.createElement('option');
+    opt.value = n;
+    opt.textContent = n;
+    sel.appendChild(opt);
+  });
 
-    if (sel.tomselect) {
-      sel.tomselect.destroy();
-    }
-
-    new TomSelect("#" + id, {
-      create: false,
-      sortField: { field: "text", order: "asc" },
-      placeholder: "Busca un nombre...",
-      allowEmptyOption: true
-    });
+  if (sel.tomselect) {
+    sel.tomselect.destroy();
   }
 
+  // AQUÍ ESTÁ EL CAMBIO CRUCIAL:
+  new TomSelect("#" + id, {
+    create: false,
+    sortField: { field: "text", order: "asc" },
+    placeholder: "Busca un nombre...",
+    allowEmptyOption: true,
+    maxOptions: null // <--- Esto elimina el límite de 50 opciones
+  });
+}
   function calcularTiempo() {
     const inicio = document.getElementById('h_ini').value;
     const fin = document.getElementById('h_fin').value;
